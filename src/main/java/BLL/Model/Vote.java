@@ -1,15 +1,15 @@
 package BLL.Model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Vote{
     private static int AUTO_ID = 0;
     private int id;
-    private Date dateOfVote;
+    private LocalDate dateOfVote;
     private int rank;
     private Candidate candidate;
 
-    public Vote(Date when, int rank){
+    public Vote(LocalDate when, int rank){
         this.id = AUTO_ID;
         this.dateOfVote = when;
         this.rank = rank;

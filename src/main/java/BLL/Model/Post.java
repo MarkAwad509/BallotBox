@@ -1,15 +1,15 @@
 package BLL.Model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Post {
     private static int AUTO_ID = 0;
     private int id;
-    private Date date;
+    private LocalDate date;
     private String message;
     private Forum forum;
 
-    public Post(Date date, String msg){
+    public Post(LocalDate date, String msg){
         this.id = AUTO_ID;
         this.date = date;
         this.message = msg;
