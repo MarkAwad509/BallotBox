@@ -1,14 +1,14 @@
 package BLL.Model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Forum{
     private static int AUTO_ID = 0;
     private int id;
     private String title;
-    private Date createdOn;
+    private LocalDate createdOn;
 
-    public Forum(String title, Date createdOn) {
+    public Forum(String title, LocalDate createdOn) {
         this.id = AUTO_ID;
         this.title = title;
         this.createdOn = createdOn;

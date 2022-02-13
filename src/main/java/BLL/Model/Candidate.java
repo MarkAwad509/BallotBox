@@ -1,7 +1,5 @@
 package BLL.Model;
 
-import java.util.Date;
-
 public class Candidate {
     private static int AUTO_ID = 0;
     private int id;
@@ -14,5 +12,9 @@ public class Candidate {
         this.name = name;
         this.description = description;
         this.image = image;
+    }
+
+    public String getName() {
+        return name;
     }
 }
