@@ -1,4 +1,4 @@
-package DAL;
+package DL;
 
 import BLL.Model.*;
 import util.generatorModels;
@@ -9,7 +9,7 @@ public class InMemoryRepo {
     public List<Ballot> ballots = null;
     public List<Candidate> candidates = null;
     public List<Elector> electors = null;
-    public Forum forum = null;
+    public List<Forum> forum = null;
     public List<Post> posts = null;
     public List<Vote> votes = null;
 
@@ -17,7 +17,7 @@ public class InMemoryRepo {
         this.ballots = generatorModels.ballotGenerator().list(5).get();
         this.candidates = generatorModels.candidateGenerator().list(3).get();
         this.electors = generatorModels.electorGenerator().list(10).get();
-        this.forum = generatorModels.forumGenerator().get();
+        this.forum = generatorModels.forumGenerator().list(1).get();
         this.posts = generatorModels.postGenerator().list(3).get();
         this.votes = generatorModels.voteGenerator().list(3).get();
 

@@ -14,13 +14,16 @@ public class Elector {
     private List<Ballot> openPolls;
     private List<Ballot> ownedPolls;
 
-
-    public Elector(String username, String pswd, int weight, String email){
+    public Elector(String username, String password, int weight, String email){
         this.voterId = AUTO_ID;
         this.username = username;
-        this.password = pswd;
+        this.password = password;
         this.weight = weight;
         this.email = email;
         AUTO_ID++;
+    }
+
+    public int getVoterId() {
+        return voterId;
     }
 }
