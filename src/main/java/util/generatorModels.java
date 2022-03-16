@@ -3,7 +3,6 @@ package util;
 import BLL.Model.*;
 import net.andreinc.mockneat.abstraction.MockUnit;
 import java.time.LocalDate;
-
 import static net.andreinc.mockneat.types.enums.StringType.*;
 import static net.andreinc.mockneat.unit.objects.Constructor.constructor;
 import static net.andreinc.mockneat.unit.text.Strings.strings;
