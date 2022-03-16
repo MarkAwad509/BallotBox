@@ -14,4 +14,8 @@ public class Forum{
         this.createdOn = createdOn;
         AUTO_ID++;
     }
+
+    public int getId() {
+        return id;
+    }
 }

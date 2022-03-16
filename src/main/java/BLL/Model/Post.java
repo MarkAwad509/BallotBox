@@ -15,4 +15,8 @@ public class Post {
         this.message = msg;
         AUTO_ID++;
     }
+
+    public int getId() {
+        return id;
+    }
 }
