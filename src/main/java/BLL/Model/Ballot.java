@@ -13,13 +13,14 @@ public class Ballot {
     private List<Candidate> candidates;
     private Forum forum;
 
-    public Ballot(String title, LocalDate start, LocalDate end, boolean isPublic, boolean isAnonymous){
+    public Ballot(String title, LocalDate start, LocalDate end, boolean isPublic, boolean isAnonymous, List<Candidate> candidates){
         this.id = AUTO_ID;
         this.title = title;
         this.start = start;
         this.end = end;
         this.isPublic = isPublic;
         this.isAnonymous = isAnonymous;
+        this.candidates = candidates;
         AUTO_ID++;
     }
 
@@ -38,5 +39,18 @@ public class Ballot {
     }
     public void setPublic(boolean aPublic) {
         isPublic = aPublic;
+    }
+
+    @Override
+    public String toString() {
+        return "Ballot{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", start=" + start +
+                ", end=" + end +
+                ", isPublic=" + isPublic +
+                ", isAnonymous=" + isAnonymous +
+                ", candidates=" + candidates +
+                '}';
     }
 }

@@ -18,4 +18,13 @@ public class Forum{
     public int getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Forum{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", createdOn=" + createdOn +
+                '}';
+    }
 }
