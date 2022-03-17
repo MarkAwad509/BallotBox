@@ -26,4 +26,19 @@ public class Elector {
     public int getVoterId() {
         return voterId;
     }
+
+    @Override
+    public String toString() {
+        return "Elector{" +
+                "voterId=" + voterId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", weight=" + weight +
+                ", email='" + email + '\'' +
+                ", votes=" + votes +
+                ", posts=" + posts +
+                ", openPolls=" + openPolls +
+                ", ownedPolls=" + ownedPolls +
+                '}';
+    }
 }

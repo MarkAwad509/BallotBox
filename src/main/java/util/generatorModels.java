@@ -1,8 +1,10 @@
 package util;
 
 import BLL.Model.*;
-import net.andreinc.mockneat.abstraction.MockUnit;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import net.andreinc.mockneat.abstraction.MockUnit;
 import static net.andreinc.mockneat.types.enums.StringType.*;
 import static net.andreinc.mockneat.unit.objects.Constructor.constructor;
 import static net.andreinc.mockneat.unit.text.Strings.strings;
@@ -13,52 +15,71 @@ import static net.andreinc.mockneat.unit.user.Emails.emails;
 import static net.andreinc.mockneat.unit.user.Names.names;
 
 public class generatorModels {
+    List<Vote> votes = new ArrayList();
+    List<Candidate> candidates = new ArrayList();
 
-    public static MockUnit<Ballot> ballotGenerator(){
+    public List<Vote> generateReusableVotes(){
+        int numberOfVotes = candidates.size() *3; //setup for PolyScan
+
+        this.votes = voteGenerator().list(numberOfVotes).get();
+        return votes;
+    }
+
+    public List<Candidate> generateReusableCandidates(){
+        this.candidates = candidateGenerator().list(3).get();
+        return candidates;
+    }
+
+
+    public MockUnit<Ballot> ballotGenerator(){
         return constructor(Ballot.class).params(
-                strings().size(15).type(HEX).get(),
-                localDates().past(LocalDate.of(2020, 1, 1)).get(),
-                localDates().future(LocalDate.of(2025, 12, 31)).get(),
-                bools().get(),
-                bools().get()
+                strings().size(15).type(HEX),
+                localDates().past(LocalDate.of(2020, 1, 1)),
+                localDates().future(LocalDate.of(2025, 12, 31)),
+                bools(),
+                bools(),
+                this.votes
         );
     }
 
-    public static MockUnit<Candidate> candidateGenerator(){
+    private MockUnit<Candidate> candidateGenerator(){
+        //String fullName = names().first() + " " + names().last();
         return constructor(Candidate.class).params(
-                names().first().get(),
-                strings().size(40).type(LETTERS).get(),
-                strings().get()
+                names().first(),
+                strings().size(40).type(LETTERS),
+                strings(),
+                this.votes
         );
     }
 
-    public static MockUnit<Elector> electorGenerator(){
+    public MockUnit<Elector> electorGenerator(){
         return constructor(Elector.class).params(
-                strings().size(6).type(LETTERS).get(),
-                strings().size(10).type(ALPHA_NUMERIC).get(),
-                ints().range(50, 200).get(),
-                emails().domain("ballotbox.com").get()
+                strings().size(6).type(LETTERS),
+                strings().size(10).type(ALPHA_NUMERIC),
+                ints().range(50, 200),
+                emails().domain("ballotbox.com")
         );
     }
 
-    public static MockUnit<Forum> forumGenerator() {
+    public MockUnit<Forum> forumGenerator() {
         return constructor(Forum.class).params(
-                strings().size(20).get(),
-                localDates().get()
+                strings().size(20),
+                localDates()
         );
     }
 
-    public static MockUnit<Post> postGenerator(){
+    public MockUnit<Post> postGenerator(){
         return constructor(Post.class).params(
-                localDates().get(),
+                localDates(),
                 strings().size(20)
         );
     }
 
-    public static MockUnit<Vote> voteGenerator(){
+    public MockUnit<Vote> voteGenerator(){
         return constructor(Vote.class).params(
-                localDates().thisYear().get(),
-                ints().get()
+                localDates().thisYear(),
+                ints().range(1,3),
+                ints().range(0, candidates.size())
         );
     }
 }

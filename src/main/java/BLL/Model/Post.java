@@ -19,4 +19,14 @@ public class Post {
     public int getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", date=" + date +
+                ", message='" + message + '\'' +
+                ", forum=" + forum +
+                '}';
+    }
 }
