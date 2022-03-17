@@ -23,6 +23,16 @@ public class Elector {
         AUTO_ID++;
     }
 
+    public Elector(String username, String password, int weight, String email, List<Vote> votes) {
+        this.voterId = AUTO_ID;
+        this.username = username;
+        this.password = password;
+        this.weight = weight;
+        this.email = email;
+        this.votes = votes;
+        AUTO_ID++;
+    }
+
     public int getVoterId() {
         return voterId;
     }
