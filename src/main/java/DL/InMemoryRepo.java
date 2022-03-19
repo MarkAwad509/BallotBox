@@ -16,10 +16,10 @@ public class InMemoryRepo {
 
     private InMemoryRepo(){
         this.candidates = gm.generateReusableCandidates();
-        this.electors = gm.generateReusableElectors();
         this.votes = gm.generateReusableVotes();
 
         this.ballots = gm.ballotGenerator().list(5).get();
+        this.electors = gm.electorGenerator().list(10).get();
         this.forum = gm.forumGenerator().list(1).get();
         this.posts = gm.postGenerator().list(3).get();
     }

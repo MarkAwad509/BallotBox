@@ -8,7 +8,7 @@ public class VoteController {
 
     public static void CreateVote(int SubjectID, LocalDate when, int rank)
     {
-        Vote vote = new Vote(when, rank, SubjectID);
+        Vote vote = new Vote(SubjectID, when, rank);
         
     }
 }

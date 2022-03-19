@@ -17,23 +17,19 @@ import static net.andreinc.mockneat.unit.user.Names.names;
 public class generatorModels {
     List<Vote> votes = new ArrayList();
     List<Candidate> candidates = new ArrayList();
-    List<Elector> electors = new ArrayList();
+
+    public List<Vote> generateReusableVotes(){
+        int numberOfVotes = candidates.size() *3; //setup for PolyScan
+
+        this.votes = voteGenerator().list(numberOfVotes).get();
+        return votes;
+    }
 
     public List<Candidate> generateReusableCandidates(){
         this.candidates = candidateGenerator().list(3).get();
         return candidates;
     }
-    public List<Elector> generateReusableElectors(){
-        this.electors = electorGenerator().list(10).get();
-        return electors;
-    }
 
-    public List<Vote> generateReusableVotes(){
-        int numberOfVotes = candidates.size() * electors.size(); //setup for PolyScan
-
-        this.votes = voteGenerator().list(numberOfVotes).get();
-        return votes;
-    }
 
     public MockUnit<Ballot> ballotGenerator(){
         return constructor(Ballot.class).params(
@@ -61,8 +57,7 @@ public class generatorModels {
                 strings().size(6).type(LETTERS),
                 strings().size(10).type(ALPHA_NUMERIC),
                 ints().range(50, 200),
-                emails().domain("ballotbox.com"),
-                this.votes
+                emails().domain("ballotbox.com")
         );
     }
 
