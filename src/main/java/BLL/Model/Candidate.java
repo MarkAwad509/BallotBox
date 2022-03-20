@@ -1,5 +1,6 @@
 package BLL.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Candidate {
@@ -15,7 +16,15 @@ public class Candidate {
         this.name = name;
         this.description = description;
         this.image = image;
-        this.votes = votes;
+        this.votes = new ArrayList();
+        AUTO_ID++;
+    }
+
+    public Candidate(String name, String description, String image) {
+        this.id=AUTO_ID;
+        this.name = name;
+        this.description = description;
+        this.image = image;
         AUTO_ID++;
     }
 
@@ -36,5 +45,33 @@ public class Candidate {
                 ", image='" + image + '\'' +
                 ", votes=" + votes +
                 '}';
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public List<Vote> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
     }
 }

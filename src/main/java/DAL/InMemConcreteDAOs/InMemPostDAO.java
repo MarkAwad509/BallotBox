@@ -7,6 +7,12 @@ import java.util.List;
 import java.util.Optional;
 
 public class InMemPostDAO implements InMemDAO<Post> {
+
+    @Override
+    public void create(Post data) {
+        InMemoryRepo.getInstance().getPosts().add(data);
+    }
+
     @Override
     public List<Post> getAll() {
         return InMemoryRepo.getInstance().getPosts();

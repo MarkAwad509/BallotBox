@@ -31,6 +31,16 @@ public class Ballot {
         AUTO_ID++;
     }
 
+    public Ballot(String title, LocalDate start, LocalDate end, boolean isPublic, boolean isAnonymous) {
+        this.id = AUTO_ID;
+        this.title = title;
+        this.start = start;
+        this.end = end;
+        this.isPublic = isPublic;
+        this.isAnonymous = isAnonymous;
+        AUTO_ID++;
+    }
+
     public int getId() {
         return id;
     }

@@ -16,10 +16,13 @@ public class main {
         for (var p:Repository.getPosts()) System.out.println(p.toString());
         for (var v:Repository.getVotes()) System.out.println(v.toString());
 
-        System.out.println("Repo is all-good!");
+        if(Repository != null)
+            System.out.println("Repo is all-good!");
 
         Candidate winner1 = bc.findWinnerUsingMonoScan(1).get();
         System.out.println("MonoScan winner is " + winner1.getName() + ". They have " + 13 + " votes.");
+
+        bc.findWinnerUsingPolyScan(1);
 
         //String winner2 = bc.findWinnerUsingPolyScan(1).get().getName();
         //System.out.println("PolyScan winner is " + winner2 + ". They have " + 13 + " votes.");
