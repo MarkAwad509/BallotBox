@@ -1,11 +1,13 @@
 package BLL.Control;
 
 import BLL.Model.Elector;
+import DAL.InMemConcreteDAOs.InMemBallotDAO;
 import DAL.InMemConcreteDAOs.InMemElectorDAO;
 
 public class ElectorController {
 
     InMemElectorDAO ElecDAO;
+    InMemBallotDAO ballotDAO;
 
     public void CreateElector(String username, String password, int weight, String email)
     {
@@ -13,7 +15,9 @@ public class ElectorController {
         ElecDAO.create(elec);
     }
 
-    public void LinkElectorToBallot(int ballotID) {
-
+    public void LinkElectorToBallot(int elector, int ballotID) {
+        ballotDAO = new InMemBallotDAO();
+        Elector elec = ElecDAO.getOne(elector).get();
+        elec.getOpenPolls().add(ballotDAO.getOne(ballotID).get());
     }
 }

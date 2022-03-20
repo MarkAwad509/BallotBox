@@ -1,5 +1,6 @@
 package DAL.InMemConcreteDAOs;
 
+import BLL.Model.Candidate;
 import BLL.Model.Elector;
 import DAL.InMemDAO;
 import DL.InMemoryRepo;
@@ -7,6 +8,11 @@ import java.util.List;
 import java.util.Optional;
 
 public class InMemElectorDAO implements InMemDAO<Elector> {
+    @Override
+    public void create(Elector data) {
+        InMemoryRepo.getInstance().getElectors().add(data);
+    }
+
     @Override
     public List<Elector> getAll() {
         return InMemoryRepo.getInstance().getElectors();
@@ -31,9 +37,5 @@ public class InMemElectorDAO implements InMemDAO<Elector> {
             InMemoryRepo.getInstance().getElectors().remove(id);
             return true;
         }else return false;
-    }
-
-    public void create(Elector elec) {
-        InMemoryRepo.getInstance().electors.add(elec);
     }
 }

@@ -5,6 +5,7 @@ import DAL.InMemConcreteDAOs.*;
 import DAL.InMemDAO;
 import DL.InMemoryRepo;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class BallotController {
@@ -12,6 +13,11 @@ public class BallotController {
     InMemDAO<Ballot> ballotDAO = new InMemBallotDAO();
     InMemDAO<Candidate> candidateDAO = new InMemCandidateDAO();
 
+    public void CreateBallot(String title, LocalDate start, LocalDate end, boolean isPublic, boolean isAnonymous)
+    {
+        Ballot ballot = new Ballot(title, start, end, isPublic, isAnonymous);
+        ballotDAO.create(ballot);
+    }
 
     public Optional<Candidate> findWinnerUsingMonoScan(int pollID){
         List<Integer> countedVotes = new ArrayList<>();

@@ -8,6 +8,11 @@ import java.util.Optional;
 
 public class InMemVoteDAO implements InMemDAO<Vote> {
     @Override
+    public void create(Vote data) {
+        InMemoryRepo.getInstance().getVotes().add(data);
+    }
+
+    @Override
     public List<Vote> getAll() {
         return InMemoryRepo.getInstance().getVotes();
     }

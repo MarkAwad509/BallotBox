@@ -8,6 +8,11 @@ import java.util.Optional;
 
 public class InMemBallotDAO implements InMemDAO<Ballot> {
     @Override
+    public void create(Ballot data) {
+        InMemoryRepo.getInstance().getBallots().add(data);
+    }
+
+    @Override
     public List<Ballot> getAll() {
         return InMemoryRepo.getInstance().getBallots();
     }

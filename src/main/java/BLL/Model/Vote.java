@@ -17,6 +17,10 @@ public class Vote{
         AUTO_ID++;
     }
 
+    public int getCandidateID() {
+        return candidateID;
+    }
+
     public LocalDate getDateOfVote() {
         return dateOfVote;
     }

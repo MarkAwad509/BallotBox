@@ -8,6 +8,11 @@ import java.util.Optional;
 
 public class InMemForumDAO implements InMemDAO<Forum> {
     @Override
+    public void create(Forum data) {
+        InMemoryRepo.getInstance().getForum().add(data);
+    }
+
+    @Override
     public List<Forum> getAll() {
         return InMemoryRepo.getInstance().getForum();
     }

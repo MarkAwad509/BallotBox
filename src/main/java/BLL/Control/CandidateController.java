@@ -4,12 +4,13 @@ import BLL.Model.Candidate;
 import BLL.Model.Elector;
 import BLL.Model.Vote;
 import DAL.InMemConcreteDAOs.InMemCandidateDAO;
+import DAL.InMemDAO;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CandidateController {
-    InMemCandidateDAO candDAO= new InMemCandidateDAO();
+    InMemDAO candDAO= new InMemCandidateDAO();
 
     public void CreateCandidate(String name, String description, String image)
     {
@@ -22,7 +23,7 @@ public class CandidateController {
         int counter=0;
 
         //get candidate with id in parameters
-        Candidate pickedCandidate = candDAO.getOne(candidateId).get();
+        Candidate pickedCandidate = (Candidate)candDAO.getOne(candidateId).get();
 
         //Put allVotes in a list
         List<Vote> allVotes = new ArrayList<Vote>(pickedCandidate.getVotes());

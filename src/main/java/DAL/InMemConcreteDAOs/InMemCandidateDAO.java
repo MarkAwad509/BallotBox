@@ -8,6 +8,11 @@ import java.util.Optional;
 
 public class InMemCandidateDAO implements InMemDAO<Candidate> {
     @Override
+    public void create(Candidate cand) {
+        InMemoryRepo.getInstance().getCandidates().add(cand);
+    }
+
+    @Override
     public List<Candidate> getAll() {
         return InMemoryRepo.getInstance().getCandidates();
     }
@@ -31,10 +36,6 @@ public class InMemCandidateDAO implements InMemDAO<Candidate> {
             InMemoryRepo.getInstance().getCandidates().remove(id);
             return true;
         }else return false;
-    }
-
-    public void create(Candidate cand) {
-        InMemoryRepo.getInstance().candidates.add(cand);
     }
 }
 

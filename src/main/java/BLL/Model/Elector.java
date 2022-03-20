@@ -37,6 +37,18 @@ public class Elector {
     public int getVoterId() {
         return voterId;
     }
+    public List<Ballot> getOpenPolls() {
+        return openPolls;
+    }
+    public void setOpenPolls(List<Ballot> openPolls) {
+        this.openPolls = openPolls;
+    }
+    public List<Ballot> getOwnedPolls() {
+        return ownedPolls;
+    }
+    public void setOwnedPolls(List<Ballot> ownedPolls) {
+        this.ownedPolls = ownedPolls;
+    }
 
     @Override
     public String toString() {
