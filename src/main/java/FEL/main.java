@@ -21,6 +21,8 @@ public class main {
         Candidate winner1 = bc.findWinnerUsingMonoScan(1).get();
         System.out.println("MonoScan winner is " + winner1.getName() + ". They have " + 13 + " votes.");
 
+        bc.findWinnerUsingPolyScan(1);
+
         //String winner2 = bc.findWinnerUsingPolyScan(1).get().getName();
         //System.out.println("PolyScan winner is " + winner2 + ". They have " + 13 + " votes.");
     }
