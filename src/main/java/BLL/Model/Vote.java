@@ -21,6 +21,10 @@ public class Vote{
         return id;
     }
 
+    public int getCandidateID() {
+        return candidateID;
+    }
+
     @Override
     public String toString() {
         return "Vote{" +
