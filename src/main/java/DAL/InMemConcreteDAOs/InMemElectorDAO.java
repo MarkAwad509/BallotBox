@@ -9,26 +9,26 @@ import java.util.Optional;
 public class InMemElectorDAO implements InMemDAO<Elector> {
     @Override
     public List<Elector> getAll() {
-        return InMemoryRepo.getInstance().electors;
+        return InMemoryRepo.getInstance().getElectors();
     }
 
     @Override
     public Optional<Elector> getOne(int id) {
-        return InMemoryRepo.getInstance().electors.stream().filter(e -> e.getVoterId() == id).findFirst();
+        return InMemoryRepo.getInstance().getElectors().stream().filter(e -> e.getVoterId() == id).findFirst();
     }
 
     @Override
     public boolean update(int id, Elector data) {
-        if(InMemoryRepo.getInstance().electors.stream().filter(e -> e.getVoterId() == id).findFirst() != null) {
-            InMemoryRepo.getInstance().electors.add(data);
+        if(InMemoryRepo.getInstance().getElectors().stream().filter(e -> e.getVoterId() == id).findFirst() != null) {
+            InMemoryRepo.getInstance().getElectors().add(data);
             return true;
         }else return false;
     }
 
     @Override
     public boolean delete(int id) {
-        if(InMemoryRepo.getInstance().electors.stream().filter(e -> e.getVoterId() == id).findFirst() != null) {
-            InMemoryRepo.getInstance().electors.remove(id);
+        if(InMemoryRepo.getInstance().getElectors().stream().filter(e -> e.getVoterId() == id).findFirst() != null) {
+            InMemoryRepo.getInstance().getElectors().remove(id);
             return true;
         }else return false;
     }

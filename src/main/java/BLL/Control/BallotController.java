@@ -14,26 +14,26 @@ public class BallotController {
     InMemDAO<Candidate> candidateDAO = new InMemCandidateDAO();
 
 
-    public Optional<Integer> findWinnerUsingMonoScan(int pollID){
+    public Optional<Candidate> findWinnerUsingMonoScan(int pollID){
         List<Integer> countedVotes = new ArrayList();
-        Optional<Integer> winner;
 
         if(ballotDAO.getOne(pollID) != null){
-            for (var c : Repository.candidates) {
-                countedVotes.add(counter(Repository.votes, c.getId()));
+            for (var c : Repository.getCandidates()) {
+                countedVotes.add(counter(Repository.getVotes(), c.getId()));
             }
-            winner = countedVotes.stream().max(Integer::compare);
-            System.out.println(countedVotes.indexOf(winner));
+            Optional<Integer> winningVotesCount = countedVotes.stream().max(Integer::compare);
+            int winnerId = countedVotes.indexOf(winningVotesCount.get());
+            Optional<Candidate> winner =  candidateDAO.getOne(winnerId);
+
             return winner;
         }
         else return null;
     }
 
-    public Candidate findWinnerUsingPolyScan(int pollID){
-        Candidate winner = null;
-
-        return winner;
-    }
+//    public Optional<Candidate> findWinnerUsingPolyScan(int pollID){
+//        Optional<Candidate> winner = new Candidate();
+//        return winner;
+//    }
 
     private int counter(List<Vote> allVotes, int candidateID){
         return (int)allVotes.stream().filter(vote -> vote.getCandidateID() == candidateID).count();

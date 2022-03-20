@@ -6,8 +6,9 @@ import java.time.LocalDate;
 
 public class VoteController {
 
-    public static Vote CreateVote(int SubjectID, LocalDate when, int rank)
+    public static void CreateVote(int SubjectID, LocalDate when, int rank)
     {
-        return new Vote(when, rank, SubjectID);
+        Vote vote = new Vote(when, rank, SubjectID);
+
     }
 }
