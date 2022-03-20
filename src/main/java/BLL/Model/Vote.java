@@ -15,6 +15,22 @@ public class Vote{
         AUTO_ID++;
     }
 
+    public LocalDate getDateOfVote() {
+        return dateOfVote;
+    }
+
+    public void setDateOfVote(LocalDate dateOfVote) {
+        this.dateOfVote = dateOfVote;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
     public int getId() {
         return id;
     }
