@@ -32,5 +32,9 @@ public class InMemCandidateDAO implements InMemDAO<Candidate> {
             return true;
         }else return false;
     }
+
+    public void create(Candidate cand) {
+        InMemoryRepo.getInstance().candidates.add(cand);
+    }
 }
 

@@ -32,4 +32,8 @@ public class InMemElectorDAO implements InMemDAO<Elector> {
             return true;
         }else return false;
     }
+
+    public void create(Elector elec) {
+        InMemoryRepo.getInstance().electors.add(elec);
+    }
 }
