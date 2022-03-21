@@ -9,13 +9,13 @@ public class ElectorController {
     InMemElectorDAO ElecDAO;
     InMemBallotDAO ballotDAO;
 
-    public void CreateElector(String username, String password, int weight, String email)
+    public void createElector(String username, String password, int weight, String email)
     {
         Elector elec = new Elector(username, password, weight, email);
         ElecDAO.create(elec);
     }
 
-    public void LinkElectorToBallot(int elector, int ballotID) {
+    public void linkElectorToBallot(int elector, int ballotID) {
         ballotDAO = new InMemBallotDAO();
         Elector elec = ElecDAO.getOne(elector).get();
         elec.getOpenPolls().add(ballotDAO.getOne(ballotID).get());

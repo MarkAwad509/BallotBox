@@ -20,11 +20,9 @@ public class main {
             System.out.println("Repo is all-good!");
 
         Candidate winner1 = bc.findWinnerUsingMonoScan(1).get();
-        System.out.println("MonoScan winner is " + winner1.getName() + ". They have " + 13 + " votes.");
+        System.out.println("MonoScan winner is " + winner1.getName() + ". They have " + winner1.getVotes().stream().count() + " votes.");
 
-        bc.findWinnerUsingPolyScan(1);
-
-        //String winner2 = bc.findWinnerUsingPolyScan(1).get().getName();
-        //System.out.println("PolyScan winner is " + winner2 + ". They have " + 13 + " votes.");
+        Candidate winner2 = bc.findWinnerUsingPolyScan(1).get();
+        System.out.println("PolyScan winner is " + winner2.getName() + ". They have " + winner2.getVotes().stream().count() + " votes.");
     }
 }

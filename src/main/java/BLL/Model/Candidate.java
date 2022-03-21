@@ -16,7 +16,7 @@ public class Candidate {
         this.name = name;
         this.description = description;
         this.image = image;
-        this.votes = new ArrayList();
+        this.votes = votes;
         AUTO_ID++;
     }
 

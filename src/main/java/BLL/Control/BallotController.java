@@ -12,6 +12,7 @@ public class BallotController {
     InMemoryRepo Repository = InMemoryRepo.getInstance();
     InMemDAO<Ballot> ballotDAO = new InMemBallotDAO();
     InMemDAO<Candidate> candidateDAO = new InMemCandidateDAO();
+    CandidateController candidateController = new CandidateController();
 
     public void CreateBallot(String title, LocalDate start, LocalDate end, boolean isPublic, boolean isAnonymous)
     {
@@ -23,41 +24,40 @@ public class BallotController {
         List<Integer> countedVotes = new ArrayList<>();
 
         if(ballotDAO.getOne(pollID) != null){
-            for (var c : Repository.getCandidates()) {
-                countedVotes.add(counter(Repository.getVotes(), c.getId()));
-            }
-            Optional<Integer> winningVotesCount = countedVotes.stream().max(Integer::compare);
-            int winnerId = countedVotes.indexOf(winningVotesCount.get());
-            Optional<Candidate> winner =  candidateDAO.getOne(winnerId);
+            for (var c : Repository.getCandidates())
+                countedVotes.add(candidateController.countVotesForCandidate(c.getId()));
 
-            return winner;
+            int winningVoteCount = countedVotes.stream().max(Integer::compare).get();
+            int winnerId = countedVotes.indexOf(winningVoteCount);
+            return candidateDAO.getOne(winnerId);
         }
         else return null;
     }
 
-    public void findWinnerUsingPolyScan(int pollID){
-        /*Todo
-         * 1. count first choice
-         * 2. put in hashMap   //ex: H:5 T:4 F:3 GM:2
-         * 3. if loser = 1st choice, eliminate choice (2nd choice -> 1st choice) //GM = dead, toyota was second choice for both, toyota +2 -> H:5 T:6 F:3
-         * 4. repeat... //F lost, 2nd choices were 2H, 1T -> H:7 T:6
-         *              //T lost, Honda won (comparison only when data structure has 2 elements)
-         */
-        Optional<Candidate> winner;
-        Map<String, Integer> countedVotes = new HashMap();
+    public Optional<Candidate> findWinnerUsingPolyScan(int pollID) {
+        List<Integer> countedVotes = new ArrayList<>();
 
-        //1.
-        //2.
-        for (var c : Repository.getCandidates())
-            countedVotes.put(c.getName(), counter(Repository.getVotes(), c.getId()));
+        if (ballotDAO.getOne(pollID) != null) {
+            for (var c : Repository.getCandidates())
+                countedVotes.add(candidateController.countVotesForCandidate(c.getId()));
 
 
+            eliminateLoser(countedVotes);
+            int winnerId = countedVotes.stream().findFirst().get();
+            return candidateDAO.getOne(winnerId);
+        }
+        else return null;
 
-        int i = 0;
-        //return winner;
     }
 
-    private int counter(List<Vote> allVotes, int candidateID){
-            return (int) allVotes.stream().filter(vote -> vote.getCandidateID() == candidateID).count();
+    private void eliminateLoser(List<Integer> countedVotes){
+        if(countedVotes.size() == 1)
+            return;
+
+        var min = countedVotes.stream().min(Integer::compare);
+        var loserId = countedVotes.indexOf(min.get());
+
+        countedVotes.remove(loserId);
+        eliminateLoser(countedVotes);
     }
 }
