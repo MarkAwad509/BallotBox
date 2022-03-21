@@ -19,22 +19,6 @@ public class generatorModels {
     List<Candidate> candidates = new ArrayList();
     List<Elector> electors = new ArrayList();
 
-    public List<Candidate> generateReusableCandidates(){
-        this.candidates = candidateGenerator().list(3).get();
-        return candidates;
-    }
-    public List<Elector> generateReusableElectors(){
-        this.electors = electorGenerator().list(10).get();
-        return electors;
-    }
-
-    public List<Vote> generateReusableVotes(){
-        int numberOfVotes = candidates.size() * electors.size(); //setup for PolyScan
-
-        this.votes = voteGenerator().list(numberOfVotes).get();
-        return votes;
-    }
-
     public MockUnit<Ballot> ballotGenerator(){
         return constructor(Ballot.class).params(
                 strings().size(15).type(HEX),
@@ -45,7 +29,20 @@ public class generatorModels {
                 this.votes
         );
     }
+    public List<Candidate> generateReusableCandidates(){
+        this.candidates = candidateGenerator().list(3).get();
+        return candidates;
+    }
+    public List<Elector> generateReusableElectors(){
+        this.electors = electorGenerator().list(10).get();
+        return electors;
+    }
+    public List<Vote> generateReusableVotes(){
+        int numberOfVotes = candidates.size() * electors.size(); //setup for PolyScan
 
+        this.votes = voteGenerator().list(numberOfVotes).get();
+        return votes;
+    }
     private MockUnit<Candidate> candidateGenerator(){
         //String fullName = names().first() + " " + names().last();
         return constructor(Candidate.class).params(
@@ -55,7 +52,6 @@ public class generatorModels {
                 this.votes
         );
     }
-
     public MockUnit<Elector> electorGenerator(){
         return constructor(Elector.class).params(
                 strings().size(6).type(LETTERS),
@@ -65,21 +61,18 @@ public class generatorModels {
                 this.votes
         );
     }
-
     public MockUnit<Forum> forumGenerator() {
         return constructor(Forum.class).params(
                 strings().size(20),
                 localDates()
         );
     }
-
     public MockUnit<Post> postGenerator(){
         return constructor(Post.class).params(
                 localDates(),
                 strings().size(20)
         );
     }
-
     public MockUnit<Vote> voteGenerator(){
         return constructor(Vote.class).params(
                 localDates().thisYear(),
